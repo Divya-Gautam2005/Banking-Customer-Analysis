@@ -1,0 +1,58 @@
+USE BankingCustomerAnalysis;
+GO
+
+INSERT INTO dbo.staging_banking
+(
+    ClientID,
+    Name,
+    Age,
+    LocationID,
+    JoinedBank,
+    BankingContact,
+    Nationality,
+    Occupation,
+    FeeStructure,
+    LoyaltyClassification,
+    EstimatedIncome,
+    SuperannuationSavings,
+    AmountOfCreditCards,
+    CreditCardBalance,
+    BankLoans,
+    BankDeposits,
+    CheckingAccounts,
+    SavingAccounts,
+    ForeignCurrencyAccount,
+    BusinessLending,
+    PropertiesOwned,
+    RiskWeighting,
+    BRId,
+    GenderId,
+    IAId
+)
+SELECT
+    Client_ID,
+    Name,
+    TRY_CONVERT(INT, Age),
+    TRY_CONVERT(INT, Location_ID),
+    TRY_CONVERT(DATE, Joined_Bank),
+    Banking_Contact,
+    Nationality,
+    Occupation,
+    Fee_Structure,
+    Loyalty_Classification,
+    TRY_CONVERT(DECIMAL(18,2), Estimated_Income),
+    TRY_CONVERT(DECIMAL(18,2), Superannuation_Savings),
+    TRY_CONVERT(INT, Amount_of_Credit_Cards),
+    TRY_CONVERT(DECIMAL(18,2), Credit_Card_Balance),
+    TRY_CONVERT(DECIMAL(18,2), Bank_Loans),
+    TRY_CONVERT(DECIMAL(18,2), Bank_Deposits),
+    TRY_CONVERT(DECIMAL(18,2), Checking_Accounts),
+    TRY_CONVERT(DECIMAL(18,2), Saving_Accounts),
+    TRY_CONVERT(DECIMAL(18,2), Foreign_Currency_Account),
+    TRY_CONVERT(DECIMAL(18,2), Business_Lending),
+    TRY_CONVERT(INT, Properties_Owned),
+    TRY_CONVERT(INT, Risk_Weighting),
+    TRY_CONVERT(INT, BRId),
+    TRY_CONVERT(INT, GenderId),
+    TRY_CONVERT(INT, IAId)
+FROM dbo.BankingImport;
